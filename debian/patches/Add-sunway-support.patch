@@ -1,0 +1,30 @@
+Description: <add sunway support>
+Author: Miao Changwei <miaochangwei@uniontech.com>
+
+---
+Last-Update: 2022-04-18
+
+--- lzo2-2.10.orig/include/lzo/lzodefs.h
++++ lzo2-2.10/include/lzo/lzodefs.h
+@@ -943,6 +943,9 @@
+ #    define LZO_ARCH_CRAY_XMP       1
+ #    define LZO_INFO_ARCH           "cray_xmp"
+ #  endif
++#elif defined(__sw_64__) || defined(__sw_64)
++#  define LZO_ARCH_SW64             1
++#  define LZO_INFO_ARCH             "sw_64"
+ #else
+ #  define LZO_ARCH_UNKNOWN          1
+ #  define LZO_INFO_ARCH             "unknown"
+--- lzo2-2.10.orig/minilzo/minilzo.c
++++ lzo2-2.10/minilzo/minilzo.c
+@@ -963,6 +963,9 @@
+ #    define LZO_ARCH_CRAY_XMP       1
+ #    define LZO_INFO_ARCH           "cray_xmp"
+ #  endif
++#elif defined(__sw_64__) || defined(__sw_64)
++#  define LZO_ARCH_SW64             1
++#  define LZO_INFO_ARCH             "sw_64"
+ #else
+ #  define LZO_ARCH_UNKNOWN          1
+ #  define LZO_INFO_ARCH             "unknown"
