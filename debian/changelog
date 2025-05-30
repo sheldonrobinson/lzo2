@@ -1,3 +1,9 @@
+lzo2 (2.10.1-1+dde1) unstable; urgency=medium
+
+  * feta: add sw64 support
+
+ -- hudeng <hudeng@deepin.org>  Tue, 24 May 2022 04:20:35 -0400
+
 lzo2 (2.10.1-1+dde) UNRELEASED; urgency=medium
 
   * update
