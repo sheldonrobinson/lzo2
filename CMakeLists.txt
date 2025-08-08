@@ -50,9 +50,16 @@ endif()
 
 project(lzo VERSION 2.10 LANGUAGES C)
 
+include(GNUInstallDirs)
+include(CMakeDependentOption)
+
 # configuration options
-option(ENABLE_STATIC "Build static LZO library." ON)
-option(ENABLE_SHARED "Build shared LZO library." OFF)
+option(LZO_ENABLE_STATIC "Build static LZO library." ON)
+cmake_dependent_option(ENABLE_STATIC "Build static LZO library." ON LZO_ENABLE_STATIC OFF)
+option(LZO_ENABLE_SHARED "Build static LZO library." ON)
+cmake_dependent_option(ENABLE_SHARED "Build shared LZO library." ON LZO_ENABLE_SHARED OFF)
+option(LZO_INSTALL "Build shared libraries" OFF)
+
 if(NOT ENABLE_STATIC AND NOT ENABLE_SHARED)
     set(ENABLE_STATIC ON)
 endif()
@@ -261,7 +268,7 @@ add_test(NAME lzotest-03 COMMAND lzotest -mall   -n10 -q "${CMAKE_CURRENT_SOURCE
 # // "make install"
 # ************************************************************************/
 
-if(DEFINED CMAKE_INSTALL_FULL_LIBDIR)
+if(LZO_INSTALL)
 
 set(f AUTHORS COPYING NEWS THANKS doc/LZO.FAQ doc/LZO.TXT doc/LZOAPI.TXT)
 install(FILES ${f} DESTINATION "${CMAKE_INSTALL_FULL_DOCDIR}")
